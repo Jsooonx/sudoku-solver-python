@@ -1,3 +1,4 @@
+import time
 from helpers import load_puzzles_from_file, load_board_from_string, get_default_board
 
 # Input your puzzles in the puzzles.txt file
@@ -11,7 +12,7 @@ else:
 
 # Step counter
 steps = 0
-debug = False
+show_progress = False
 
 # Loop every row
 def print_board(board):
@@ -82,11 +83,13 @@ def solve(board):
         steps += 1
         
         # Print progress every 1000 steps
-        if debug and steps % 1000 == 0:
+        if show_progress and steps % 1000 == 0:
             print(f"\nStep {steps}")
             
         if is_valid(board, num, (row, col)):
             board[row][col] = num
+            
+            start_time = time.time()
             
             if solve(board):
                 return True
@@ -99,9 +102,16 @@ def solve(board):
 print("Sudoku before solving:\n")
 print_board(board)
 
+start_time = time.time()
+
 if solve(board):
+    end_time = time.time()
+    
     print("\nSudoku solved:\n")
     print_board(board)
     print(f"\nSolved in {steps} attempts.")
+    print(f"Time taken: {end_time - start_time:.6f} seconds")
 else:
+    end_time = time.time()
+    
     print("No solution exists.")
