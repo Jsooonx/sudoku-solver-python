@@ -29,7 +29,7 @@ Example (`puzzles.txt`):
 From the project directory:
 
 ```bash
-python main.py
+python sudokusolver.py
 ```
 The solver will:
 - load puzzles from puzzles.txt
