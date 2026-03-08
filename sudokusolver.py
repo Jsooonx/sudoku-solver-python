@@ -18,7 +18,8 @@ def print_board(board):
                 # Every 3 column, print a vertical separator
                 print("|", end=" ")
             # Print a number in that position
-            print(board[i][j], end=" ")
+            value = board[i][j]
+            print("." if value == 0 else value, end=" ")
             
         print()
 
@@ -127,8 +128,8 @@ def main():
         
         # For the first puzzle, show the board before solving
         if i == 0:
-            print("Puzzle 1\n")
-            print("Sudoku before solving:\n")
+            print("=" * 10 + " Puzzle 1 " + "=" * 10)
+            print("\nSudoku before solving:\n")
             print_board(board)
             print()
             
@@ -162,10 +163,10 @@ def main():
             print(f"Puzzle {i+1}: {status} | Attemps: {steps} | Time: {elapsed:.6f}s")
             
     # Print final summary
-    print("\nSummary")
-    print(f"Solved: {solved_count}")
-    print(f"Failed: {failed_count}")
-    print(f"Total time: {total_time:.6f} seconds")
+    print("\n" + "=" * 10 + " Summary " + "=" * 10)
+    print(f"Solved      : {solved_count}")
+    print(f"Failed      : {failed_count}")
+    print(f"Total time  : {total_time:.6f} seconds")
     
 if __name__ == "__main__":
     main()
