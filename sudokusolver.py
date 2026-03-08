@@ -55,11 +55,42 @@ def is_valid(board, num, pos):
         
     return True
 
+def get_candidates(board, row, col):
+    candidates = []
+    
+    if board[row][col] != 0:
+        return candidates
+    
+    for num in range(1, 10):
+        if is_valid(board, num, (row, col)):
+            candidates.append(num)
+            
+    return candidates
+
+def find_best_empty(board):
+    best_pos = None
+    best_candidates = None
+    
+    for row in range(9):
+        for col in range(9):
+            if board[row][col] == 0:
+                candidates = get_candidates(board, row, col)
+                
+                if best_candidates is None or len(candidates) < len(best_candidates):
+                    best_pos = (row, col)
+                    best_candidates = candidates
+                    
+                    # Early exit, best possible case
+                    if len(best_candidates) == 1:
+                        return best_pos
+                    
+    return best_pos
+
 def solve(board):
     global steps
     
     # Looks for a first empty cell
-    empty = find_empty(board)
+    empty = find_best_empty(board)
     
     # If none is empty, the puzzle is done
     if empty is None:
