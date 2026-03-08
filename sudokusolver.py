@@ -1,15 +1,6 @@
 import time
 from helpers import load_puzzles_from_file, load_board_from_string, get_default_board
 
-# Input your puzzles in the puzzles.txt file
-puzzles = load_puzzles_from_file("puzzles.txt")
-
-if puzzles:
-    board = load_board_from_string(puzzles[0])
-else:
-    print("No valid puzzles found in puzzles.txt")
-    board = get_default_board()
-
 # Step counter
 steps = 0
 show_progress = False
@@ -89,8 +80,6 @@ def solve(board):
         if is_valid(board, num, (row, col)):
             board[row][col] = num
             
-            start_time = time.time()
-            
             if solve(board):
                 return True
             
@@ -99,19 +88,38 @@ def solve(board):
             
     return False
 
-print("Sudoku before solving:\n")
-print_board(board)
-
-start_time = time.time()
-
-if solve(board):
-    end_time = time.time()
+def main():
+    global steps
     
-    print("\nSudoku solved:\n")
+    # Reset step counter
+    steps = 0
+    
+    # Load puzzles from file
+    puzzles = load_puzzles_from_file("puzzles.txt")
+    
+    if puzzles:
+        board = load_board_from_string(puzzles[0])
+    else:
+        print("No valid puzzles found in puzzles.txt")
+        board = get_default_board()
+        
+    print("Sudoku before solving:\n")
     print_board(board)
-    print(f"\nSolved in {steps} attempts.")
-    print(f"Time taken: {end_time - start_time:.6f} seconds")
-else:
-    end_time = time.time()
     
-    print("No solution exists.")
+    start_time = time.time()
+    
+    if solve(board):
+        end_time = time.time()
+        
+        print("\nSudoku solved:\n")
+        print_board(board)
+        print(f"\nSolved in {steps} attempts.")
+        print(f"Time taken: {end_time - start_time:.6f} seconds")
+    else:
+        end_time = time.time()
+        
+        print("No solution exists.")
+        print
+
+if __name__ == "__main__":
+    main()
