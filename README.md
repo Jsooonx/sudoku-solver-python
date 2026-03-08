@@ -17,9 +17,10 @@ The solver was later optimized using the **Minimum Remaining Value (MRV) heurist
 Each puzzle must be written as **81 digits in a single line**.
 
 Example (`puzzles.txt`):
+```
 530070000600195000098000060800060003400803001700020006060000280000419005000080079
 600120384008459072000006005000264030070080006940003000310000050089700000502000190
-
+```
 
 `0` represents an empty cell.
 
