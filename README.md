@@ -1,17 +1,17 @@
 # Sudoku Solver (Python)
-
+```
 A Sudoku solver implemented in Python using **recursive backtracking**.  
 The solver was later optimized using the **Minimum Remaining Value (MRV) heuristic** to reduce the search space and improve performance.
-
+```
 ## Features
-
+```
 - Recursive backtracking solver
 - Sudoku constraint validation (row, column, 3×3 box)
 - Multi-puzzle solving from `puzzles.txt`
 - Step counter (number of search attempts)
 - Execution time measurement
 - MRV heuristic optimization
-
+```
 ## Puzzle Format
 
 Each puzzle must be written as **81 digits in a single line**.
