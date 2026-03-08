@@ -38,6 +38,7 @@ The solver will:
 
 ## Example Output
 
+```text
 Loaded 3 puzzle(s)
 
 ========== Puzzle 1 ==========
@@ -61,11 +62,14 @@ Time     : 0.012431 seconds
 
 Puzzle 2 | solved | Attempts: 18211 | Time: 0.006812s
 Puzzle 3 | solved | Attempts: 22104 | Time: 0.008214s
+```
 
 ## Optimization
 
+```
 Applying the MRV heuristic significantly reduces the search space.
 Example improvement on harder puzzles:
 
 Basic backtracking : ~2,000,000 attempts
 MRV heuristic      : ~7,000 attempts
+```
