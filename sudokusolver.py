@@ -1,16 +1,19 @@
-board = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
-]
+from helpers import load_puzzles_from_file, load_board_from_string, get_default_board
 
-# Loop every boards
+# Input your puzzles in the puzzles.txt file
+puzzles = load_puzzles_from_file("puzzles.txt")
+
+if puzzles:
+    board = load_board_from_string(puzzles[0])
+else:
+    print("No valid puzzles found in puzzles.txt")
+    board = get_default_board()
+
+# Step counter
+steps = 0
+debug = False
+
+# Loop every row
 def print_board(board):
     for i in range(len(board)):
         # Every 3 rows, print a horizontal line
@@ -60,6 +63,8 @@ def is_valid(board, num, pos):
     return True
 
 def solve(board):
+    global steps
+    
     # Looks for a first empty cell
     empty = find_empty(board)
     
@@ -72,6 +77,14 @@ def solve(board):
     
     # Try number 1 - 9
     for num in range(1, 10):
+        
+        # Count steps
+        steps += 1
+        
+        # Print progress every 1000 steps
+        if debug and steps % 1000 == 0:
+            print(f"\nStep {steps}")
+            
         if is_valid(board, num, (row, col)):
             board[row][col] = num
             
@@ -82,12 +95,13 @@ def solve(board):
             board[row][col] = 0
             
     return False
-    
+
 print("Sudoku before solving:\n")
 print_board(board)
 
 if solve(board):
     print("\nSudoku solved:\n")
     print_board(board)
+    print(f"\nSolved in {steps} attempts.")
 else:
     print("No solution exists.")
