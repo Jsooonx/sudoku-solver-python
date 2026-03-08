@@ -91,35 +91,81 @@ def solve(board):
 def main():
     global steps
     
-    # Reset step counter
-    steps = 0
-    
     # Load puzzles from file
     puzzles = load_puzzles_from_file("puzzles.txt")
     
-    if puzzles:
-        board = load_board_from_string(puzzles[0])
-    else:
+    # If no puzzles are found, fallback to the default board
+    if not puzzles:
         print("No valid puzzles found in puzzles.txt")
-        board = get_default_board()
+        print("Using default board instead.\n")
         
-    print("Sudoku before solving:\n")
-    print_board(board)
+        default_board = get_default_board
+        
+        # Convert default board into puzzle string format
+        default_puzzle = ""
+        for row in default_board:
+            for num in row:
+                default_puzzle += str(num)
+                
+    print(f"Loaded {len(puzzles)} puzzle(s)\n")
     
-    start_time = time.time()
+    # Statistics
+    solved_count = 0
+    failed_count = 0
+    total_time = 0
     
-    if solve(board):
-        end_time = time.time()
+    # Solve each puzzle in the file
+    for i, puzzle in enumerate(puzzles):
         
-        print("\nSudoku solved:\n")
-        print_board(board)
-        print(f"\nSolved in {steps} attempts.")
-        print(f"Time taken: {end_time - start_time:.6f} seconds")
-    else:
-        end_time = time.time()
+        # Reset step counter for each puzzle
+        steps = 0
         
-        print("No solution exists.")
-        print
-
+        # Convert puzzle string into a 9 x 9 board
+        board = load_board_from_string(puzzle)
+        
+        start_time = time.time()
+        
+        # For the first puzzle, show the board before solving
+        if i == 0:
+            print("Puzzle 1\n")
+            print("Sudoku before solving:\n")
+            print_board(board)
+            print()
+            
+        # Solve the puzzle using backtracking
+        solved = solve(board)
+        
+        end_time = time.time()
+        elapsed = end_time - start_time
+        total_time += elapsed
+        
+        # Updated statistics
+        if solved:
+            solved_count += 1
+        else:
+            failed_count += 1
+            
+        # Show detailed output for the first puzzle
+        if i == 0:
+            if solved:
+                print("Sudoku solved:\n")
+                print_board(board)
+            else:
+                print("No solution exists.")
+                
+            print(f"\nAttempts: {steps}")
+            print(f"Time: {elapsed:.6f} seconds\n")
+            
+        # For the rest of the puzzles, show summary only
+        else:
+            status = "solved" if solved else "failed"
+            print(f"Puzzle {i+1}: {status} | Attemps: {steps} | Time: {elapsed:.6f}s")
+            
+    # Print final summary
+    print("\nSummary")
+    print(f"Solved: {solved_count}")
+    print(f"Failed: {failed_count}")
+    print(f"Total time: {total_time:.6f} seconds")
+    
 if __name__ == "__main__":
     main()
