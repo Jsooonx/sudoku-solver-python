@@ -37,33 +37,9 @@ The solver will:
 - display the first puzzle in detail
 - show summary results for the rest
 
-## Example Output
+## Output
 
-```text
-Loaded 3 puzzle(s)
-
-========== Puzzle 1 ==========
-
-Sudoku before solving:
-
-5 3 . | . 7 . | . . .
-6 . . | 1 9 5 | . . .
-. 9 8 | . . . | . 6 .
----------------------
-8 . . | . 6 . | . . 3
-4 . . | 8 . 3 | . . 1
-7 . . | . 2 . | . . 6
----------------------
-. 6 . | . . . | 2 8 .
-. . . | 4 1 9 | . . 5
-. . . | . 8 . | . 7 9
-
-Attempts : 37652
-Time     : 0.012431 seconds
-
-Puzzle 2 | solved | Attempts: 18211 | Time: 0.006812s
-Puzzle 3 | solved | Attempts: 22104 | Time: 0.008214s
-```
+<img src="assets/sudokudemo.png" width="700">
 
 ## Optimization
 
