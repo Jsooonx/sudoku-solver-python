@@ -50,3 +50,7 @@ Example improvement on harder puzzles:
 Basic backtracking : ~2,000,000 attempts
 MRV heuristic      : ~7,000 attempts
 ```
+
+## Key Insight
+A naive backtracking solver can become extremely slow on harder puzzles.
+Using the Minimum Remaining Value (MRV) heuristic significantly reduces the search space by choosing the most constrained empty cell first.
