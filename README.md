@@ -28,7 +28,7 @@ Example (`puzzles.txt`):
 600120384008459072000006005000264030070080006940003000310000050089700000502000190
 ```
 `0` represents an empty cell.
-## Run instructions
+## Run Instructions
 From the project directory:
 
 ```bash
@@ -51,10 +51,6 @@ Example improvement on harder puzzles:
 Basic backtracking  : ~2,000,000 attempts
 With MRV            : ~7,000 attempts
 ```
-## Key Insight
-A naive backtracking solver can become extremely slow on harder puzzles.
-Using the Minimum Remaining Value (MRV) heuristic significantly reduces the search space by choosing the most constrained empty cell first.
-
 ## Project Structure
 ```
 - sudokusolver.py = main solver and execution flow
