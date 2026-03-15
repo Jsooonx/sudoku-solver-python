@@ -12,20 +12,23 @@ The solver was later optimized using the **Minimum Remaining Value (MRV) heurist
 - Execution time measurement
 - MRV heuristic optimization
 ```
+
+## How it works
+```
+- Uses recursive backtracking to fill empty cells
+- Validates candidate numbers across row, column, and 3×3 subgrid constraints
+- Applies the Minimum Remaining Value (MRV) heuristic to choose the most constrained empty cell first
+- Measures solving attempts and runtime for performance comparison
+```
 ## Puzzle Format
-
 Each puzzle must be written as **81 digits in a single line**.
-
 Example (`puzzles.txt`):
 ```
 530070000600195000098000060800060003400803001700020006060000280000419005000080079
 600120384008459072000006005000264030070080006940003000310000050089700000502000190
 ```
-
 `0` represents an empty cell.
-
-## Run the Solver
-
+## Run instructions
 From the project directory:
 
 ```bash
@@ -38,19 +41,24 @@ The solver will:
 - show summary results for the rest
 
 ## Output
-
 <img src="assets/sudokudemo.png" width="700">
 
-## Optimization
-
+## Optimization Insight
 ```
-Applying the MRV heuristic significantly reduces the search space.
+Applying the Minimum Remaining Value (MRV) heuristic significantly reduces the search space by selecting the most constrained empty cell first.
 Example improvement on harder puzzles:
 
-Basic backtracking : ~2,000,000 attempts
-MRV heuristic      : ~7,000 attempts
+Basic backtracking  : ~2,000,000 attempts
+With MRV            : ~7,000 attempts
 ```
-
 ## Key Insight
 A naive backtracking solver can become extremely slow on harder puzzles.
 Using the Minimum Remaining Value (MRV) heuristic significantly reduces the search space by choosing the most constrained empty cell first.
+
+## Project Structure
+```
+- sudokusolver.py = main solver and execution flow
+- helpers.py = utility functions for board formatting and validation
+- puzzles.txt = input puzzles
+- assets/ = demo output images
+```
