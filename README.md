@@ -4,22 +4,28 @@ A Sudoku solver implemented in Python using **recursive backtracking**.
 The solver was later optimized using the **Minimum Remaining Value (MRV) heuristic** to reduce the search space and improve performance.
 
 ## Features
-```
+
 - Recursive backtracking solver
 - Sudoku constraint validation (row, column, 3×3 box)
 - Multi-puzzle solving from `puzzles.txt`
 - Step counter (number of search attempts)
 - Execution time measurement
 - MRV heuristic optimization
+
+## Project Structure
+```
+- sudokusolver.py = main solver and execution flow
+- helpers.py = utility functions for board formatting and validation
+- puzzles.txt = input puzzles
+- assets/ = demo output images
 ```
 
 ## How it works
-```
 - Uses recursive backtracking to fill empty cells
 - Validates candidate numbers across row, column, and 3×3 subgrid constraints
 - Applies the Minimum Remaining Value (MRV) heuristic to choose the most constrained empty cell first
 - Measures solving attempts and runtime for performance comparison
-```
+
 ## Puzzle Format
 Each puzzle must be written as **81 digits in a single line**.
 Example (`puzzles.txt`):
@@ -50,11 +56,4 @@ Example improvement on harder puzzles:
 
 Basic backtracking  : ~2,000,000 attempts
 With MRV            : ~7,000 attempts
-```
-## Project Structure
-```
-- sudokusolver.py = main solver and execution flow
-- helpers.py = utility functions for board formatting and validation
-- puzzles.txt = input puzzles
-- assets/ = demo output images
 ```
